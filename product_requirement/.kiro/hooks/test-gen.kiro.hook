@@ -1,0 +1,13 @@
+{
+  "name": "Unit Test Generator",
+  "description": "Auto-generates unit tests when a Python source file is saved",
+  "version": "1",
+  "when": {
+    "type": "fileSaved",
+    "patterns": ["src/**/*.py", "!src/**/*test*.py", "!src/**/__init__.py"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Python file was saved. Generate or update unit tests for any new or changed functions/classes.\n\nRules:\n- Use pytest\n- Mock all external calls (DynamoDB, S3, Bedrock, Strands agents)\n- Never use real patient data — use fixtures with fake data\n- One assertion per test\n- Keep tests simple and readable\n- Place test file in tests/unit/ mirroring the src/ structure\n\nRef: #[[file:.kiro/steering/tech.md]]"
+  }
+}
