@@ -1,5 +1,7 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { clearProfile } from "../profileStore";
+import { clearBooking } from "../bookingStore";
 
 interface Props {
   children: React.ReactNode;
@@ -8,6 +10,7 @@ interface Props {
 
 export default function Shell({ children, wide }: Props) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { to: "/",              label: "Home" },
@@ -17,6 +20,13 @@ export default function Shell({ children, wide }: Props) {
     { to: "/profile",       label: "My Profile" },
     { to: "/visit-summary", label: "Visit Summary" },
   ];
+
+  const handleReset = () => {
+    clearProfile();
+    clearBooking();
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <div className="min-h-screen bg-warm-50">
@@ -49,9 +59,17 @@ export default function Shell({ children, wide }: Props) {
             ))}
           </nav>
 
-          <span className="ml-auto text-xs text-gray-400 hidden sm:block tracking-wide">
-            Secure · Encrypted · GDPR compliant
-          </span>
+          {/* Reset demo button */}
+          <button
+            onClick={handleReset}
+            className="ml-auto text-xs font-medium px-3 py-1.5 rounded-lg transition"
+            style={{ color: "#9CA3AF", border: "1px solid #F7D0DC" }}
+            onMouseEnter={e => { e.currentTarget.style.color = "#E85C7A"; e.currentTarget.style.borderColor = "#F4A7B9"; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "#9CA3AF"; e.currentTarget.style.borderColor = "#F7D0DC"; }}
+            title="Clear all data and restart the demo"
+          >
+            ↺ Reset demo
+          </button>
         </div>
       </header>
 
