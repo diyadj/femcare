@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -74,6 +75,17 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
+
+# React / Frontend
+frontend/node_modules/
+frontend/build/
+frontend/package-lock.json
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
 
 # Logs
 *.log

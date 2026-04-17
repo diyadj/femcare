@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-warm-50;
+    color: #2D2D2D;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3 {
+    color: #2D2D2D;
+    letter-spacing: 0.005em;
+  }
+}
+
+@layer components {
+  /* ── Inputs ── */
+  .form-input {
+    @apply w-full rounded-xl border border-pink-200 bg-white px-4 py-2.5 text-sm
+           placeholder-pink-300 shadow-sm transition
+           focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200;
+    color: #2D2D2D;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium mb-1.5;
+    color: #2D2D2D;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-pink-500 px-6 py-2.5
+           text-sm font-semibold text-white shadow-sm transition
+           hover:bg-pink-600 active:bg-pink-700
+           focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-pink-200 bg-white
+           px-6 py-2.5 text-sm font-medium shadow-sm transition
+           hover:bg-pink-50 hover:border-pink-300
+           focus:outline-none focus:ring-2 focus:ring-pink-200 focus:ring-offset-2;
+    color: #2D2D2D;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-2xl bg-white p-6;
+    border: 1px solid #F7D0DC;
+    box-shadow: 0 1px 4px 0 rgba(232, 114, 138, 0.06);
+  }
+}

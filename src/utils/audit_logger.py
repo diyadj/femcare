@@ -44,13 +44,18 @@ class AuditLogger:
         )
 
         try:
+            # Serialize to dict, converting datetime → ISO string for DynamoDB
+            item = event.model_dump()
+            item["timestamp"] = item["timestamp"].isoformat()
+
             self.table.put_item(
-                Item=event.model_dump(),
+                Item=item,
                 ConditionExpression="attribute_not_exists(event_id)",  # true immutability
             )
-        except ClientError as e:
+        except Exception as e:
             # Log to CloudWatch but do not raise — audit failure must never block care
-            print(f"AUDIT_ERROR event_id={event.event_id} error={e.response['Error']['Code']}")
+            code = getattr(getattr(e, "response", None), "Error", {}).get("Code", type(e).__name__) if hasattr(e, "response") else type(e).__name__
+            print(f"AUDIT_ERROR event_id={event.event_id} error={code}: {e}")
 
         return event
 
