@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-typography;
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at top left, rgba(255, 90, 125, 0.14), transparent 28%),
+      radial-gradient(circle at top right, rgba(92, 128, 229, 0.16), transparent 24%),
+      linear-gradient(180deg, #fffafc 0%, #ffffff 44%, #f7f9ff 100%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: 'Fraunces', serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(255, 90, 125, 0.18);
+    color: #1f2937;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-outline {
+    @apply border-2 border-accent text-accent hover:bg-accent hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-neutral rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 border border-gray-100;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(36px);
+    opacity: 0.65;
+    animation: drift 18s ease-in-out infinite;
+  }
+
+  .orb-one {
+    top: 4rem;
+    left: -5rem;
+    height: 18rem;
+    width: 18rem;
+    background: rgba(255, 90, 125, 0.2);
+  }
+
+  .orb-two {
+    top: 16rem;
+    right: -4rem;
+    height: 16rem;
+    width: 16rem;
+    background: rgba(92, 128, 229, 0.16);
+    animation-delay: -6s;
+  }
+
+  .orb-three {
+    bottom: -5rem;
+    left: 30%;
+    height: 14rem;
+    width: 14rem;
+    background: rgba(78, 205, 196, 0.12);
+    animation-delay: -12s;
+  }
+
+  .badge-active {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent/10 text-accent;
+  }
+
+  .badge-important {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-important/10 text-important;
+  }
+
+  .badge-neutral {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-neutral/10 text-neutral;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -1.5rem, 0) scale(1.04);
+  }
+}
